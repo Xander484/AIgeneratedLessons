@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-Dars: Sehrli Qutilar va Formalar (HTML Yakuni) | Kodi Bilan Dasturlash</title>
+  <meta name="description" content="10 yoshli bolalar uchun HTML 2-darsi: div, span, input, audio, video va form teglari bo'yicha interaktiv darslik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Ambient Background Shapes -->
+  <div class="bg-shape shape-purple"></div>
+  <div class="bg-shape shape-teal"></div>
+  <div class="bg-shape shape-peach"></div>
+
+  <!-- App Container -->
+  <div class="app-container">
+
+    <!-- Header / Hero Section -->
+    <header class="hero-section">
+      <div class="header-badge">
+        <span class="badge-icon">🎉</span>
+        <span>2-Dars • HTML To'liq Yakunlanadi!</span>
+      </div>
+      <h1 class="hero-title">
+        Sehrli <span class="highlight">Qutilar</span> & Formalar!
+      </h1>
+      <p class="hero-subtitle">
+        Vebsaytda narsalarni tartibli qutilarga solamiz va foydalanuvchilar yozishi mumkin bo'lgan sehrli anketalar yasaymiz!
+      </p>
+
+      <!-- Kodi Mascot Greeting Card -->
+      <div class="mascot-card">
+        <div class="kodi-avatar" id="kodiAvatar" title="Menga bosing!">
+          <!-- Animated Kodi Robot with Party Hat / Tool -->
+          <svg class="robot-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Party Hat / Antenna -->
+            <polygon points="60,2 48,22 72,22" fill="#FF5376"/>
+            <circle cx="60" cy="2" r="4" fill="#FFC837" class="pulse-glow"/>
+            <!-- Head -->
+            <rect x="25" y="22" width="70" height="55" rx="18" fill="#7928CA" stroke="#5B18A1" stroke-width="3"/>
+            <!-- Face Screen -->
+            <rect x="35" y="32" width="50" height="35" rx="10" fill="#1A1E36"/>
+            <!-- Eyes -->
+            <circle cx="48" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+            <circle cx="72" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+            <!-- Big Smile -->
+            <path d="M48 58 Q60 68 72 58" stroke="#FFC837" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Bolts -->
+            <rect x="18" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+            <rect x="94" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+            <!-- Body -->
+            <rect x="38" y="80" width="44" height="34" rx="10" fill="#5B18A1"/>
+            <!-- Magic Box Icon on Chest -->
+            <rect x="52" y="88" width="16" height="14" rx="3" fill="#FFC837"/>
+            <!-- Arms -->
+            <path d="M30 86 Q16 75 22 65" stroke="#7928CA" stroke-width="6" stroke-linecap="round" fill="none" class="wave-arm"/>
+            <path d="M90 86 Q102 92 96 104" stroke="#7928CA" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="mascot-speech">
+          <div class="speech-bubble">
+            <span class="speech-name">🤖 Kodi:</span>
+            <span id="mascotMessage">Salom do'stim! Bugun biz HTML ning eng zo'r sirlarini o'rganamiz: &lt;div&gt; shkaflari va &lt;input&gt; sehrli darchalari! HTML bugun to'liq yakunlanadi! 🚀</span>
+          </div>
+          <button class="sound-toggle-btn" id="soundToggleBtn" title="Ovozni yoqish / o'chirish">
+            <span>🔊</span> Ovoz: <b id="soundStatusText">Yoniq</b>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="lesson-nav">
+      <button class="nav-tab active" data-tab="introTab">
+        <span>📦</span> 1. Qutilar Nima?
+      </button>
+      <button class="nav-tab" data-tab="tagsTab">
+        <span>✨</span> 2. Teglar Laboratoriyasi
+      </button>
+      <button class="nav-tab" data-tab="playgroundTab">
+        <span>🦸</span> 3. Qahramon Anketasi
+      </button>
+      <button class="nav-tab" data-tab="quizTab">
+        <span>🏆</span> 4. HTML Chempioni Viktorinasi
+      </button>
+    </nav>
+
+    <!-- TAB 1: INTRO TO CONTAINERS & FORMS -->
+    <section class="tab-content active" id="introTab">
+      <div class="card intro-card">
+        <h2 class="section-title"><span>📦</span> Tartibli Xonacha: Div va Span</h2>
+        <p class="section-desc">
+          Xonangizda o'yinchoqlar har tomonga sochilib yotsa nima qilasiz? Albatta, ularni maxsus qutilarga yoki shkafga joylaysiz! Vebsaytda ham elementlarni tartibga solish uchun maxsus qutilar ishlatiladi:
+        </p>
+
+        <div class="box-comparison-grid">
+          <!-- DIV BOX -->
+          <div class="box-card div-theme">
+            <div class="box-card-icon">🗄️</div>
+            <h3>&lt;div&gt; — Katta Sehrli Shkaf</h3>
+            <p>
+              <b>"Division" (Bo'lim)</b> so'zidan olingan. U butun boshli katta quti bo'lib, uning ichiga bir nechta sarlavha, rasm va tugmalarni bitta joyga jamlab qo'yish mumkin. U butun bir qatorni egallaydi!
+            </p>
+            <div class="box-example-tag">&lt;div&gt; Katta Quti &lt;/div&gt;</div>
+          </div>
+
+          <!-- SPAN BOX -->
+          <div class="box-card span-theme">
+            <div class="box-card-icon">🏷️</div>
+            <h3>&lt;span&gt; — Mitti Belgilash Qutisi</h3>
+            <p>
+              U katta qatorni egallamaydi! Matn ichidagi faqat <b>bitta so'zni</b> yoki <b>harfni</b> alohida rangga bo'yash yoki unga alohida sehr berish uchun ishlatiladigan mitti quticha.
+            </p>
+            <div class="box-example-tag">&lt;span&gt; Mitti so'z &lt;/span&gt;</div>
+          </div>
+        </div>
+
+        <!-- Forms Concept -->
+        <div class="forms-concept-banner">
+          <div class="banner-badge">📝 Yangi Super-Kuch!</div>
+          <h3>Foydalanuvchi Bilan Gaplashuvchi Sayt: &lt;input&gt; va &lt;form&gt;</h3>
+          <p>
+            Oldingi darsda saytimiz faqat ko'rsatardi. Bugun esa saytimizga tashrif buyurgan odam o'z ismini yozishi, sirli parolini kiritishi, sevimli rangini tanlashi va tugmani bosib jo'natishi mumkin! Bularning bari <b>&lt;input&gt;</b> va <b>&lt;form&gt;</b> orqali amalga oshadi!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: INTERACTIVE TAGS LABORATORY -->
+    <section class="tab-content" id="tagsTab">
+      <div class="card tags-explorer">
+        <h2 class="section-title"><span>🔍</span> 2-Dars Laboratoriyasi</h2>
+        <p class="section-desc">
+          Pastdagi sehrli teglarni bosing va ularning qanday ishlashini darhol ko'ring!
+        </p>
+
+        <div class="explorer-layout">
+          <!-- Tag Buttons Sidebar -->
+          <div class="tags-sidebar">
+            <div class="sidebar-label">Tegni tanlang:</div>
+            <div class="tag-btn-list" id="tagButtonList">
+              <button class="tag-selector-btn active" data-tag="div">
+                <span class="tag-badge">&lt;div&gt;</span>
+                <span class="tag-name">Katta Quti (Shkaf)</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="span">
+                <span class="tag-badge">&lt;span&gt;</span>
+                <span class="tag-name">Mitti So'z Qutisi</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="inputText">
+                <span class="tag-badge">&lt;input text&gt;</span>
+                <span class="tag-name">Matn Yozish Darchasi</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="inputPassword">
+                <span class="tag-badge">&lt;input password&gt;</span>
+                <span class="tag-name">Sirli Parol Darchasi</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="inputColor">
+                <span class="tag-badge">&lt;input color&gt;</span>
+                <span class="tag-name">Sehrli Bo'yoq Tanlagich</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="inputCheckbox">
+                <span class="tag-badge">&lt;input checkbox&gt;</span>
+                <span class="tag-name">Qushcha (Belgilash)</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="media">
+                <span class="tag-badge">&lt;audio&gt; &lt;video&gt;</span>
+                <span class="tag-name">Musiqa & Video</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="form">
+                <span class="tag-badge">&lt;form&gt;</span>
+                <span class="tag-name">Sehrli Konvert (Forma)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tag Display Area -->
+          <div class="tag-display-area">
+            <div class="display-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="window-title" id="tagWindowTitle">&lt;div&gt; — Katta Quti (Shkaf)</div>
+              <button class="action-btn-trigger" id="animateTagBtn">
+                <span>⚡</span> Jonlantir!
+              </button>
+            </div>
+
+            <!-- Code Preview -->
+            <div class="code-box">
+              <div class="code-label">HTML KODI:</div>
+              <pre><code id="tagCodeSnippet">&lt;div class="kartochka"&gt; ... &lt;/div&gt;</code></pre>
+            </div>
+
+            <!-- Kids Explanation -->
+            <div class="explanation-box" id="tagExplanation">
+              <!-- Dynamically rendered explanation -->
+            </div>
+
+            <!-- Live Browser Viewport -->
+            <div class="live-screen-container">
+              <div class="screen-label">🌐 Brauzer Ekranidagi Ko'rinish:</div>
+              <div class="live-screen-viewport" id="liveScreenViewport">
+                <!-- Dynamically rendered visual -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PLAYGROUND (SUPERHERO ID CARD CREATOR) -->
+    <section class="tab-content" id="playgroundTab">
+      <div class="card playground-card">
+        <h2 class="section-title"><span>🦸</span> O'zing Sinab Ko'r: Superqahramon Guvohnomasi!</h2>
+        <p class="section-desc">
+          O'rgangan barcha <b>&lt;input&gt;</b> va <b>&lt;div&gt;</b> teglaringizdan foydalanib, o'zingizning Superqahramon ID kartangizni yarating!
+        </p>
+
+        <div class="hero-creator-grid">
+          <!-- Controls / Form Inputs -->
+          <div class="creator-controls">
+            <div class="controls-title">📝 Anketani to'ldiring:</div>
+
+            <div class="field-group">
+              <label for="heroNameInput">
+                <span>👤</span> Qahramonlik Ismingiz: <code>&lt;input type="text"&gt;</code>
+              </label>
+              <input type="text" id="heroNameInput" value="Kapitan Shiddat" placeholder="Masalan: Super Kodchi">
+            </div>
+
+            <div class="field-group">
+              <label for="heroPassInput">
+                <span>🔒</span> Sirli Parol: <code>&lt;input type="password"&gt;</code>
+              </label>
+              <input type="password" id="heroPassInput" value="sirli123" placeholder="Parol yozing">
+            </div>
+
+            <div class="field-group">
+              <label for="heroSuitColor">
+                <span>🎨</span> Kostyum Rangi: <code>&lt;input type="color"&gt;</code>
+              </label>
+              <div class="color-control-wrapper">
+                <input type="color" id="heroSuitColor" value="#7928CA">
+                <span class="color-val-label" id="colorValLabel">#7928CA</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>
+                <span>⚡</span> Super Qobiliyatlar: <code>&lt;input type="checkbox"&gt;</code>
+              </label>
+              <div class="checkbox-options">
+                <label class="check-item">
+                  <input type="checkbox" id="powerFly" checked> Uchish kuchi 🚀
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" id="powerLaser" checked> Lazer ko'zlar ⚡
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" id="powerSpeed"> Super tezlik 🏃
+                </label>
+              </div>
+            </div>
+
+            <div class="form-submit-row">
+              <button class="hero-save-btn" id="saveHeroBtn">
+                <span>🚀</span> Guvohnomani Tasdiqlash! (Submit)
+              </button>
+            </div>
+          </div>
+
+          <!-- Result: Superhero ID Card -->
+          <div class="creator-preview">
+            <div class="preview-header">
+              <span>🪪 Tayyor Qahramon Guvohnomasi</span>
+              <span class="live-pill">🔴 Jonli Natija</span>
+            </div>
+            <div class="id-card-stage" id="idCardStage">
+              <div class="superhero-badge" id="superheroBadge">
+                <div class="badge-top-strip" id="badgeTopStrip">SUPER-AGENT ID</div>
+                <div class="badge-body">
+                  <div class="badge-avatar" id="badgeAvatar">🦸‍♂️</div>
+                  <h3 class="badge-name" id="badgeHeroName">Kapitan Shiddat</h3>
+                  <div class="badge-status">Status: <b>Faol Qahramon</b></div>
+                  <div class="badge-powers" id="badgePowers">
+                    <span class="power-tag">🚀 Uchish</span>
+                    <span class="power-tag">⚡ Lazer</span>
+                  </div>
+                  <div class="badge-code-hint">
+                    &lt;div class="badge"&gt; ichidagi ma'lumotlar
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: QUIZ (HTML CHAMPION) -->
+    <section class="tab-content" id="quizTab">
+      <div class="card quiz-card">
+        <div class="quiz-header">
+          <div>
+            <h2 class="section-title"><span>🏆</span> HTML Chempioni Viktorinasi!</h2>
+            <p class="section-desc">2-dars sinovlaridan o'ting va butun HTML kursini bitirganlik sertifikatini qo'lga kiriting!</p>
+          </div>
+          <div class="quiz-score-badge">
+            <span>⭐ Yulduzlar:</span>
+            <b id="quizScore">0 / 4</b>
+          </div>
+        </div>
+
+        <!-- Quiz Question Box -->
+        <div class="quiz-box" id="quizBox">
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill" style="width: 25%;"></div>
+          </div>
+
+          <div class="question-number" id="questionStep">Savol 1 / 4</div>
+          <h3 class="question-text" id="questionText">Yuklanmoqda...</h3>
+
+          <div class="options-grid" id="optionsGrid"></div>
+
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+
+        <!-- Quiz Complete Celebration -->
+        <div class="quiz-celebration" id="quizCelebration" style="display: none;">
+          <div class="trophy-bounce">🏆</div>
+          <h2>URA! SEN HTML NI TO'LIQ TUGATDING!</h2>
+          <p id="celebrationText">Barcha 2 ta darsni muvaffaqiyatli yakunlab, haqiqiy HTML ustasiga aylanding!</p>
+          <div class="certificate-badge gold">
+            <span>🎖️ OLTIN SERTIFIKAT:</span>
+            <b>Rasmiy HTML Mutaxassisi</b>
+            <small>Keyingi dars: CSS Sehrli Bo'yoqlari!</small>
+          </div>
+          <div style="margin-top: 15px;">
+            <button class="action-btn-restart" id="restartQuizBtn">
+              <span>🔄</span> Viktorinani Qaytadan O'ynash
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="lesson-footer">
+      <p>💡 <b>Ibrat School</b> • 2-Dars: HTML To'liq Yakunlandi! • Keyingi bekat: 3-Dars CSS Bo'yoqlari 🎨</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

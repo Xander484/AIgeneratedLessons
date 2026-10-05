@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Dars O'yini: CSS Sehrli Bo'yoqlari & Boss Battle | Kodi</title>
+  <meta name="description" content="10 yoshli bolalar uchun CSS darsi: ranglar, Box Model va Bug Monsterga qarshi jang!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Background Elements -->
+  <div class="bg-shape circle-1"></div>
+  <div class="bg-shape circle-2"></div>
+  <div class="bg-shape circle-3"></div>
+
+  <div class="app-container">
+
+    <!-- GAME HUD BAR -->
+    <header class="game-hud">
+      <div class="hud-left">
+        <a href="../index.html" class="hud-home-btn" title="Xaritaga qaytish">🏠 Xarita</a>
+        <div class="hud-badge level-badge">
+          <span class="hud-icon">⭐</span>
+          <span id="playerLevelText">1-Daraja: Bo'yoq Izquvari</span>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <div class="xp-bar-container">
+          <div class="xp-bar-header">
+            <span class="xp-label">⚡ TAJRIBA (XP):</span>
+            <span class="xp-value" id="xpText">0 / 100 XP</span>
+          </div>
+          <div class="xp-bar-track">
+            <div class="xp-bar-fill" id="xpBarFill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <div class="hud-badge coins-badge">
+          <span class="hud-icon">🪙</span>
+          <span id="coinsText">0 Tanga</span>
+        </div>
+        <button class="hud-sound-btn" id="soundToggleBtn" title="Ovozni yoqish/o'chirish">
+          <span id="soundIcon">🔊</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MISSION STEP TRACKER (10-15 Min) -->
+    <div class="mission-stepper">
+      <div class="step-item active" id="stepIndicator1" data-step="1">
+        <div class="step-num">1</div>
+        <span class="step-label">Brifing</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item" id="stepIndicator2" data-step="2">
+        <div class="step-num">2</div>
+        <span class="step-label">Laboratoriya</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item" id="stepIndicator3" data-step="3">
+        <div class="step-num">3</div>
+        <span class="step-label">Kodi'ni Kiyintir</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-item" id="stepIndicator4" data-step="4">
+        <div class="step-num">4</div>
+        <span class="step-label">Boss Battle 👾</span>
+      </div>
+    </div>
+
+    <!-- MASCOT HERO CARD -->
+    <div class="mascot-card">
+      <div class="kodi-avatar" id="kodiAvatar" title="Kodi bilan salomlashing!">
+        <svg class="robot-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="22" x2="60" y2="8" stroke="#FF5376" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="60" cy="7" r="6" fill="#FFC837" class="pulse-glow"/>
+          <rect x="25" y="22" width="70" height="55" rx="18" fill="#FF5376" stroke="#D81B60" stroke-width="3"/>
+          <rect x="35" y="32" width="50" height="35" rx="10" fill="#1A1E36"/>
+          <circle cx="48" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+          <circle cx="72" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+          <path d="M48 58 Q60 68 72 58" stroke="#FFC837" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M 30 20 Q 60 -5 90 20 Q 60 30 30 20" fill="#FFC837"/>
+          <rect x="18" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+          <rect x="94" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+          <rect x="38" y="80" width="44" height="34" rx="10" fill="#D81B60"/>
+          <path d="M30 86 Q18 92 24 104" stroke="#FF5376" stroke-width="6" stroke-linecap="round" fill="none" class="wave-arm"/>
+          <path d="M90 86 Q102 92 96 104" stroke="#FF5376" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="92" y="104" width="8" height="20" fill="#8B4513" rx="2"/>
+          <path d="M92 124 Q 96 135 100 124" fill="#00F0FF"/>
+        </svg>
+      </div>
+      <div class="mascot-speech">
+        <div class="speech-bubble">
+          <span class="speech-name">🤖 Kodi Rassom:</span>
+          <span id="mascotMessage">Salom Dasturchi! Bug Maxluqi mening qahramonlik libosimni rangsiz qilib qo'ydi! 12 daqiqada yangi CSS zirhini yasay olamizmi? 🎨</span>
+        </div>
+        <div class="speech-hint" id="mascotHint">💡 Maslahat: Har bir topshiriq uchun XP va Tanga yutasiz!</div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         STAGE 1: BRIEFING & BOX MODEL CONCEPT (2 min)
+         ========================================== -->
+    <section class="game-stage active" id="stage1">
+      <div class="card stage-card">
+        <div class="stage-header">
+          <div class="stage-tag">1-BOSQICH (2 Daqiqa)</div>
+          <h2 class="stage-title">🎯 Missiya Brifingi: CSS Nima?</h2>
+          <p class="stage-desc">HTML faqat suyak edi. CSS esa vebsaytning kiyimi va qalqonidir!</p>
+        </div>
+
+        <div class="battle-vs-grid">
+          <div class="vs-card plain-html">
+            <div class="vs-icon">🦴</div>
+            <h3>Faqat HTML</h3>
+            <p>Oq-qora, himoyasiz va zerikarli matnlar.</p>
+            <div class="vs-badge danger">Himoya: 0%</div>
+          </div>
+          <div class="vs-divider">VS</div>
+          <div class="vs-card styled-css">
+            <div class="vs-icon">🛡️</div>
+            <h3>CSS Qo'shilganda!</h3>
+            <p>Yorqin ranglar, yumaloq burchaklar va baquvvat devorlar!</p>
+            <div class="vs-badge success">Himoya: 100%</div>
+          </div>
+        </div>
+
+        <div class="box-model-explainer">
+          <h3>📦 Qahramon Qutisi (Box Model) Sirlari:</h3>
+          <div class="model-cards-grid">
+            <div class="model-card">
+              <span class="model-icon">☁️</span>
+              <h4>Padding (Ichki Yostiq)</h4>
+              <p>Zirh ichidagi yumshoq havo. Yozuv devorga urilmasligi uchun!</p>
+            </div>
+            <div class="model-card">
+              <span class="model-icon">🧱</span>
+              <h4>Border (Ramka Devor)</h4>
+              <p>Qutining lazer devori. Qalin, ingichka yoki rangli bo'ladi.</p>
+            </div>
+            <div class="model-card">
+              <span class="model-icon">🚀</span>
+              <h4>Margin (Tashqi Masofa)</h4>
+              <p>Boshqa dushman va qutilarni o'zidan uzoqlashtiruvchi kuch!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <button class="game-btn primary-game-btn" id="btnStartStage2">
+            <span>🚀</span> 2-Bosqich: Laboratoriyaga O'tish (+20 XP)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STAGE 2: RAPID LAB / 3 MINI-QUESTS (3 min)
+         ========================================== -->
+    <section class="game-stage" id="stage2">
+      <div class="card stage-card">
+        <div class="stage-header">
+          <div class="stage-tag">2-BOSQICH (3 Daqiqa)</div>
+          <h2 class="stage-title">⚡ Bo'yoqlar Laboratoriyasi (3 Mini-Quest)</h2>
+          <p class="stage-desc">Quyidagi 3 ta sehrni sinab ko'ring va topshiriqlarni bajaring!</p>
+        </div>
+
+        <!-- Quest Checklist -->
+        <div class="quest-tracker-bar">
+          <div class="quest-item" id="qCheck1">
+            <span class="q-icon">⏳</span>
+            <span>1. Matn yoki fon rangini o'zgartir</span>
+          </div>
+          <div class="quest-item" id="qCheck2">
+            <span class="q-icon">⏳</span>
+            <span>2. Ramka devorini (border) yoq</span>
+          </div>
+          <div class="quest-item" id="qCheck3">
+            <span class="q-icon">⏳</span>
+            <span>3. Burchakni yumaloq qil (border-radius)</span>
+          </div>
+        </div>
+
+        <div class="explorer-layout">
+          <div class="tags-sidebar">
+            <div class="sidebar-label">CSS Kodini Tanlang:</div>
+            <div class="tag-btn-list" id="cssButtonList">
+              <button class="tag-selector-btn active" data-css="color">
+                <span class="tag-badge">color</span>
+                <span class="tag-name">Matn Rangi</span>
+              </button>
+              <button class="tag-selector-btn" data-css="background">
+                <span class="tag-badge">background</span>
+                <span class="tag-name">Orqa Fon</span>
+              </button>
+              <button class="tag-selector-btn" data-css="border">
+                <span class="tag-badge">border</span>
+                <span class="tag-name">Lazer Devor</span>
+              </button>
+              <button class="tag-selector-btn" data-css="borderRadius">
+                <span class="tag-badge">border-radius</span>
+                <span class="tag-name">Yumaloq Burchak</span>
+              </button>
+              <button class="tag-selector-btn" data-css="padding">
+                <span class="tag-badge">padding</span>
+                <span class="tag-name">Ichki Yostiqcha</span>
+              </button>
+              <button class="tag-selector-btn" data-css="margin">
+                <span class="tag-badge">margin</span>
+                <span class="tag-name">Tashqi Masofa</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tag-display-area">
+            <div class="display-header">
+              <div class="window-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="window-title" id="cssWindowTitle">color — Matn Rangi</div>
+            </div>
+            <div class="code-box">
+              <div class="code-label">CSS KODI:</div>
+              <pre><code id="cssCodeSnippet">color: #FF5376;</code></pre>
+            </div>
+            <div class="explanation-box" id="cssExplanation">
+              <b>color</b> — Yozuvlarning (matnning) rangini o'zgartiradi.
+            </div>
+            
+            <div class="live-screen-container">
+              <div class="screen-label">🌐 Jonli Sinov Ekrani:</div>
+              <div class="live-screen-viewport" id="cssLiveScreen">
+                <div class="demo-css-container">
+                  <div class="other-box">Tashqi Blok</div>
+                  <div class="demo-css-box" id="demoCssBox">Sehrli Quti</div>
+                  <div class="other-box">Tashqi Blok</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <button class="game-btn secondary-game-btn" id="btnBackToStage1">⬅️ Orqaga</button>
+          <button class="game-btn primary-game-btn" id="btnGoToStage3" disabled>
+            <span>🔒</span> Avval 3 ta topshiriqni sinab ko'ring!
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STAGE 3: DRESS-UP KODI MINI-GAME (4 min)
+         ========================================== -->
+    <section class="game-stage" id="stage3">
+      <div class="card stage-card">
+        <div class="stage-header">
+          <div class="stage-tag">3-BOSQICH (4 Daqiqa)</div>
+          <h2 class="stage-title">🎨 Kodi'ni Kiyintir (Super Zirh Ustaxonasi)</h2>
+          <p class="stage-desc">Quyidagi slayder va bo'yoqlar yordamida Kodining super qalqonini sozlang!</p>
+        </div>
+
+        <div class="dressup-grid">
+          <!-- Controls -->
+          <div class="dressup-controls">
+            <div class="control-group">
+              <label>🛡️ Qalqon Rangi (background-color):</label>
+              <input type="color" id="heroBgColor" value="#7928ca">
+            </div>
+
+            <div class="control-group">
+              <label>✨ Lazer Yozuv Rangi (color):</label>
+              <input type="color" id="heroTextColor" value="#00F0FF">
+            </div>
+
+            <div class="control-group">
+              <label>☁️ Zirh Qalinligi (padding): <b id="valHeroPadding">20px</b></label>
+              <input type="range" id="heroPadding" min="8" max="45" value="20">
+            </div>
+
+            <div class="control-group">
+              <label>🔘 Qalqon Yumaloqligi (border-radius): <b id="valHeroRadius">15px</b></label>
+              <input type="range" id="heroRadius" min="0" max="50" value="15">
+            </div>
+
+            <div class="dressup-code-output">
+              <span class="preview-title">Hosil bo'lgan CSS Kodi Zirhi:</span>
+              <pre><code id="heroCodeSnippet">/* Kodi Shield Style */</code></pre>
+            </div>
+          </div>
+
+          <!-- Hero Preview -->
+          <div class="dressup-preview">
+            <div class="preview-header">
+              <span>🤖 Tayyorlangan Super Qahramon</span>
+              <button class="mini-confetti-btn" id="heroCheerBtn">🎉 Qoyilmaqom!</button>
+            </div>
+            
+            <div class="hero-stage-view">
+              <div class="hero-character-box">
+                <div class="hero-shield-item" id="heroShield">
+                  <span class="shield-icon">⚡</span>
+                  <span class="shield-text" id="heroShieldText">KODI QALQONI</span>
+                </div>
+              </div>
+              <div class="hero-status-message" id="heroReactionText">
+                "Voybo'o'! Bu qalqon bilan dushman monsterini albatta yengamiz!"
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-actions">
+          <button class="game-btn secondary-game-btn" id="btnBackToStage2">⬅️ Orqaga</button>
+          <button class="game-btn primary-game-btn boss-ready-btn" id="btnGoToStage4">
+            <span>⚔️</span> Jangni Boshlash (Bug Monster Kutmoqda!) (+30 XP)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STAGE 4: BOSS BATTLE / BUG MONSTER (3 min)
+         ========================================== -->
+    <section class="game-stage" id="stage4">
+      <div class="card stage-card boss-card">
+        <div class="stage-header">
+          <div class="stage-tag danger-tag">4-BOSQICH (3 Daqiqa) • FINAL BOSS</div>
+          <h2 class="stage-title">👾 Xatolar Maxluqi (Bug Monster) Bilan Jang!</h2>
+          <p class="stage-desc">Har bir to'g'ri javob maxluqqa lazer zarbasi beradi! Uning 3 ta joni (HP) bor!</p>
+        </div>
+
+        <!-- Boss Arena -->
+        <div class="boss-arena">
+          <!-- Kodi Fighter -->
+          <div class="fighter-side player-fighter">
+            <div class="fighter-avatar" id="battleKodiAvatar">🤖</div>
+            <div class="fighter-info">
+              <div class="fighter-name">Kodi Qahramon</div>
+              <div class="player-shield-badge">🛡️ Zirh Tayyor!</div>
+            </div>
+          </div>
+
+          <!-- Laser Beam Animation Element -->
+          <div class="laser-beam" id="laserBeam"></div>
+
+          <!-- VS Badge -->
+          <div class="battle-vs-badge">VS</div>
+
+          <!-- Bug Monster Boss -->
+          <div class="fighter-side monster-fighter" id="monsterFighter">
+            <div class="fighter-avatar monster-avatar" id="monsterAvatar">👾</div>
+            <div class="fighter-info">
+              <div class="fighter-name">Xatolar Maxluqi</div>
+              <div class="monster-hp-container">
+                <span class="hp-label">JON (HP):</span>
+                <div class="hp-hearts" id="monsterHpHearts">❤️❤️❤️</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Battle Quiz Box -->
+        <div class="battle-quiz-box" id="battleQuizBox">
+          <div class="battle-q-step" id="battleQStep">1-Hujum: 1-Savol</div>
+          <h3 class="battle-q-title" id="battleQTitle">Yuklanmoqda...</h3>
+          <div class="battle-options-grid" id="battleOptionsGrid"></div>
+          <div class="battle-feedback" id="battleFeedback"></div>
+        </div>
+
+        <!-- VICTORY CELEBRATION (Stage 5) -->
+        <div class="boss-victory-screen" id="bossVictoryScreen" style="display: none;">
+          <div class="trophy-bounce">🏆</div>
+          <h2 class="victory-title">🎉 G'ALABA! BUG MAXLUQI YENGILDI!</h2>
+          <p class="victory-desc">Siz CSS sirlarini mukammal o'rganib, Kodining super-qahramon kostyumini qutqardingiz!</p>
+          
+          <div class="victory-stats-card">
+            <div class="stat-pill">⭐ To'plangan Yulduzlar: <b>3 / 3</b></div>
+            <div class="stat-pill">⚡ Jami XP: <b id="finalXpText">100 XP</b></div>
+            <div class="stat-pill">🪙 Kodi Tangalari: <b>+30 Tanga</b></div>
+          </div>
+
+          <div class="unlocked-badge-card">
+            <span class="badge-big-icon">🎖️</span>
+            <div>
+              <h3>Yangi Nishon Ochildi:</h3>
+              <p><b>"CSS Super Qahramoni & Ranglar Ustasi"</b></p>
+            </div>
+          </div>
+
+          <div class="victory-actions">
+            <a href="../index.html" class="game-btn primary-game-btn">
+              🗺️ Sarguzasht Xaritasiga Qaytish (Pasport)
+            </a>
+            <button class="game-btn secondary-game-btn" id="btnRestartBattle">
+              🔄 Qaytadan Jang Qilish
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Floating Toast for XP / Coins -->
+    <div class="floating-reward-toast" id="rewardToast">
+      <span class="reward-icon">⚡</span>
+      <span class="reward-text">+20 XP!</span>
+    </div>
+
+    <!-- Lesson Footer -->
+    <footer class="lesson-footer">
+      <p>💡 <b>Ibrat School</b> • 10-15 Daqiqalik Gamified CSS Darsi</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

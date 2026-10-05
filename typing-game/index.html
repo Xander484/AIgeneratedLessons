@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tezkor Kodchi: HTML & CSS Klaviatura O'yini | Kodi</title>
+  <meta name="description" content="10 yoshli bolalar uchun HTML va CSS kodlarini klaviaturada terish o'yini. Tezlik, aniqlik va jonli natija!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@600;800;900&family=Fira+Code:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Ambient Shapes -->
+  <div class="bg-shape circle-1"></div>
+  <div class="bg-shape circle-2"></div>
+  <div class="bg-shape circle-3"></div>
+
+  <div class="app-container">
+
+    <!-- GAME TOP HUD -->
+    <header class="game-hud">
+      <div class="hud-left">
+        <a href="../index.html" class="hud-btn hud-home-btn" title="Asosiy Xaritaga Qaytish">🏠 Xarita</a>
+        <div class="hud-badge level-badge">
+          <span>🎮 Tezkor Kodchi</span>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <div class="hud-stat-pill">
+          <span>⚡ Tezlik:</span>
+          <b id="cpmText">0</b> <small>belgi/daq</small>
+        </div>
+        <div class="hud-stat-pill">
+          <span>🎯 Aniqlik:</span>
+          <b id="accText">100%</b>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <div class="hud-badge coins-badge">
+          <span>🪙</span>
+          <b id="coinsText">0</b>
+        </div>
+        <button class="hud-btn hud-sound-btn" id="soundToggleBtn" title="Ovoz">
+          <span id="soundIcon">🔊</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- LEVEL / CATEGORY SELECTOR -->
+    <div class="category-tabs">
+      <button class="cat-tab active" data-cat="html_basic">
+        <span class="tab-icon">🦴</span> 1-Bosqich: HTML Asoslari
+      </button>
+      <button class="cat-tab" data-cat="html_adv">
+        <span class="tab-icon">📦</span> 2-Bosqich: Qutilar & Formalar
+      </button>
+      <button class="cat-tab" data-cat="css_style">
+        <span class="tab-icon">🎨</span> 3-Bosqich: CSS Bo'yoqlari
+      </button>
+      <button class="cat-tab" data-cat="boss_rush">
+        <span class="tab-icon">⚡</span> 4-Bosqich: Super Kodchi (Boss)
+      </button>
+    </div>
+
+    <!-- MAIN TYPING ARENA -->
+    <main class="typing-arena card">
+
+      <!-- Round Info & Kodi Status -->
+      <div class="arena-header">
+        <div class="progress-info">
+          <span class="round-badge" id="roundBadge">Vazifa 1 / 5</span>
+          <h2 class="task-title" id="taskTitle">Sehrli Tugma Yasaymiz!</h2>
+        </div>
+
+        <div class="mascot-mini">
+          <div class="kodi-mini-avatar" id="kodiMiniAvatar">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="60" y1="22" x2="60" y2="8" stroke="#FF5376" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="60" cy="7" r="6" fill="#FFC837" class="pulse-glow"/>
+              <rect x="25" y="22" width="70" height="55" rx="18" fill="#4E65FF" stroke="#2B3ECE" stroke-width="3"/>
+              <rect x="35" y="32" width="50" height="35" rx="10" fill="#1A1E36"/>
+              <circle cx="48" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+              <circle cx="72" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+              <path d="M50 58 Q60 66 70 58" stroke="#FFC837" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <rect x="18" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+              <rect x="94" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+            </svg>
+          </div>
+          <div class="kodi-bubble" id="kodiBubble">
+            Klaviaturangizni tayyorlang! Ekranda ko'ringan kodni terishni boshlang! ⌨️
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Code Display (With Character Highlighter) -->
+      <div class="code-terminal-box" id="terminalBox">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-filename" id="terminalFilename">index.html — Kodi Editor</div>
+          <div class="terminal-hint">⌨️ Klaviaturada yozing</div>
+        </div>
+
+        <div class="terminal-body" id="codeDisplayArea">
+          <!-- Dynamically generated character spans -->
+        </div>
+
+        <!-- Hidden input to capture mobile/desktop typing reliably -->
+        <input type="text" id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="hidden-input" autofocus>
+      </div>
+
+      <!-- Keyboard Visual Helper & Instructions -->
+      <div class="typing-footer-row">
+        <div class="key-hint-box">
+          <span class="key-hint-label">Hozirgi Harf:</span>
+          <div class="current-key-badge" id="currentKeyBadge">SPACE</div>
+        </div>
+
+        <button class="skip-btn" id="skipTaskBtn">Keyingisiga O'tish ⏩</button>
+      </div>
+
+      <!-- LIVE PREVIEW BOX: Kids see what their code actually builds! -->
+      <div class="live-sandbox-section">
+        <div class="sandbox-header">
+          <div class="sandbox-title">🌐 Jonli Natija (Siz yozgan kod ekranda paydo bo'ladi!)</div>
+          <span class="sandbox-status" id="sandboxStatus">Kutilmoqda...</span>
+        </div>
+        <div class="sandbox-viewport" id="sandboxViewport">
+          <div class="sandbox-placeholder" id="sandboxPlaceholder">
+            ✨ Kodni to'g'ri terib tugatishingiz bilan ushbu joyda jonli element paydo bo'ladi!
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- VICTORY / LEVEL COMPLETE MODAL -->
+    <div class="game-modal-overlay" id="victoryModal">
+      <div class="game-modal-card">
+        <div class="modal-trophy">🏆</div>
+        <h2 class="modal-title">Ajoyib Ish, Tezkor Kodchi!</h2>
+        <p class="modal-subtitle">Ushbu bosqichdagi barcha kodlarni muvaffaqiyatli terib chiqdingiz!</p>
+
+        <div class="modal-stats-grid">
+          <div class="mstat-box">
+            <span class="mstat-icon">⚡</span>
+            <div class="mstat-val" id="finalCpmVal">0</div>
+            <div class="mstat-lbl">Belgi / Daqiqa</div>
+          </div>
+          <div class="mstat-box">
+            <span class="mstat-icon">🎯</span>
+            <div class="mstat-val" id="finalAccVal">100%</div>
+            <div class="mstat-lbl">Aniqlik</div>
+          </div>
+          <div class="mstat-box">
+            <span class="mstat-icon">🪙</span>
+            <div class="mstat-val" id="finalCoinsVal">+25</div>
+            <div class="mstat-lbl">Tangalar</div>
+          </div>
+        </div>
+
+        <div class="modal-stars" id="modalStars">⭐⭐⭐</div>
+
+        <div class="modal-actions">
+          <button class="modal-btn primary-btn" id="nextLevelBtn">Keyingi Bosqich 🚀</button>
+          <a href="../index.html" class="modal-btn secondary-btn">🏠 Xaritaga Qaytish</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating XP Toast -->
+    <div class="floating-reward-toast" id="rewardToast">
+      <span class="reward-icon">⚡</span>
+      <span class="reward-text">+15 XP!</span>
+    </div>
+
+    <footer class="game-footer">
+      <p>💡 <b>Ibrat School</b> • Tezkor Kodchi: HTML & CSS Klaviaturada Yozish O'yini</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

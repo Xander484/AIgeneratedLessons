@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodi Bilan Dasturlash | Dasturchi Pasporti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <div class="app-container">
+    <header class="hero-section">
+      <div class="kodi-avatar">
+        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="22" x2="60" y2="8" stroke="#FF5376" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="60" cy="7" r="6" fill="#FFC837" class="pulse-glow"/>
+          <rect x="25" y="22" width="70" height="55" rx="18" fill="#4E65FF" stroke="#2B3ECE" stroke-width="3"/>
+          <rect x="35" y="32" width="50" height="35" rx="10" fill="#1A1E36"/>
+          <circle cx="48" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+          <circle cx="72" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+          <path d="M50 58 Q60 66 70 58" stroke="#FFC837" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <rect x="18" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+          <rect x="94" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+          <rect x="38" y="80" width="44" height="34" rx="10" fill="#2B3ECE"/>
+          <path d="M30 86 Q18 92 24 104" stroke="#4E65FF" stroke-width="6" stroke-linecap="round" fill="none" class="wave-arm"/>
+          <path d="M90 86 Q102 92 96 104" stroke="#4E65FF" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <h1 class="hero-title">
+        Dasturchi <span class="highlight">Pasporti</span>
+      </h1>
+      <div class="player-hud-summary" id="playerPassportHud" style="margin: 20px auto; display: inline-flex; gap: 16px; background: white; padding: 10px 24px; border-radius: 999px; border: 2px solid #C7D2FE; box-shadow: 0 4px 15px rgba(78,101,255,0.15); font-weight: 700;">
+        <span>⭐ Daraja: <b id="passportLevel" style="color: #4F46E5;">Boshlovchi Kodchi</b></span>
+        <span>⚡ Jami XP: <b id="passportXp" style="color: #FF5376;">0 XP</b></span>
+        <span>🪙 Tangalar: <b id="passportCoins" style="color: #D97706;">0</b></span>
+      </div>
+
+      <!-- FEATURED ARCADE TYPING GAME LINK -->
+      <div style="margin: 24px 0 10px; text-align: center;">
+        <a href="typing-game/index.html" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #110E1B, #261E40); color: white; padding: 14px 28px; border-radius: 999px; text-decoration: none; border: 3px solid #7928CA; box-shadow: 0 10px 25px rgba(121,40,202,0.35); font-weight: 800; font-size: 1.15rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="font-size: 1.6rem;">⌨️</span>
+          <span>YANGI O'YIN: <b style="color: #00F0FF;">Tezkor Kodchi</b> (HTML & CSS Klaviatura Simulyatori)</span>
+          <span style="background: #FF5376; color: white; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem;">O'ynash 🎮</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="roadmap-grid">
+      <!-- Lesson 1 -->
+      <a href="lesson1/index.html" class="lesson-card completed">
+        <div class="card-status">✅ Bajarilgan</div>
+        <div class="card-icon">🦴</div>
+        <h3>1-Dars: HTML Asosiy Teglar</h3>
+        <p>Vebsaytning poydevori va skeleti bilan tanishamiz.</p>
+      </a>
+
+      <!-- Lesson 2 -->
+      <a href="lesson2/index.html" class="lesson-card completed">
+        <div class="card-status">✅ Bajarilgan</div>
+        <div class="card-icon">📦</div>
+        <h3>2-Dars: Qutilar & Formalar</h3>
+        <p>HTMLni to'liq yakunlab, sehrli qutilar va anketalar yozamiz.</p>
+      </a>
+
+      <!-- Lesson 3 -->
+      <a href="lesson3/index.html" class="lesson-card current" style="border-color: #FF5376; box-shadow: 0 10px 25px rgba(255,83,118,0.25);">
+        <div class="card-status" style="background: #FFE4E6; color: #E11D48; border: 1px solid #FDA4AF;">🎮 10-15 Daqiqalik O'yin!</div>
+        <div class="card-icon">🎨</div>
+        <h3>3-Dars: CSS Bo'yoqlari & Boss Battle</h3>
+        <p>Kodi'ni kiyintirish, Box Model va Bug Monsterga qarshi jang!</p>
+        <div style="margin-top: 10px; font-weight: bold; color: #4F46E5; font-size: 0.9rem;" id="lesson3Stars">⭐ 3 Yulduzli Sarguzasht</div>
+      </a>
+
+      <!-- Lesson 4 -->
+      <div class="lesson-card locked">
+        <div class="card-status">🔒 Yopiq</div>
+        <div class="card-icon">✨</div>
+        <h3>4-Dars: Flexbox Sehrgarligi</h3>
+        <p>Elementlarni yonma-yon va chiroyli tizishni o'rganamiz.</p>
+      </div>
+
+      <!-- Lesson 5 -->
+      <div class="lesson-card locked">
+        <div class="card-status">🔒 Yopiq</div>
+        <div class="card-icon">🌪️</div>
+        <h3>5-Dars: Harakat & Animatsiyalar</h3>
+        <p>Sichqoncha borgandagi harakatlar va jonli animatsiyalar.</p>
+      </div>
+
+      <!-- Lesson 6 -->
+      <div class="lesson-card locked">
+        <div class="card-status">🔒 Yopiq</div>
+        <div class="card-icon">🚀</div>
+        <h3>6-Dars: Haqiqiy Real Vebsayt (Final)</h3>
+        <p>Barcha bilimlarni birlashtirib, shaxsiy portfel yaratamiz!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    try {
+      const xp = localStorage.getItem('kodi_total_xp') || '0';
+      const coins = localStorage.getItem('kodi_coins') || '0';
+      const completed = localStorage.getItem('kodi_lesson3_completed') === 'true';
+      if (document.getElementById('passportXp')) {
+        document.getElementById('passportXp').innerText = `${xp} XP`;
+      }
+      if (document.getElementById('passportCoins')) {
+        document.getElementById('passportCoins').innerText = coins;
+      }
+      if (completed) {
+        document.getElementById('passportLevel').innerText = "CSS Qahramoni";
+        document.getElementById('lesson3Stars').innerText = "⭐⭐⭐ Bajarildi! (G'alaba)";
+        document.getElementById('lesson3Stars').style.color = "#16A34A";
+      }
+    } catch(e) {}
+  </script>
+</body>
+</html>

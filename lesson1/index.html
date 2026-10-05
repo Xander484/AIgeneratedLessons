@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-Dars: Sehrli HTML Teglari Dunyosi | Kodi Bilan Dasturlash</title>
+  <meta name="description" content="10 yoshli bolalar uchun HTML teglari bo'yicha interaktiv va animatsiyali o'zbekcha darslik.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Background Elements -->
+  <div class="bg-shape circle-1"></div>
+  <div class="bg-shape circle-2"></div>
+  <div class="bg-shape circle-3"></div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Header / Hero Section -->
+    <header class="hero-section">
+      <div class="header-badge">
+        <span class="badge-icon">🚀</span>
+        <span>1-Dars • Bolalar uchun Dasturlash</span>
+      </div>
+      <h1 class="hero-title">
+        Sehrli <span class="highlight">HTML</span> Teglari Dunyosi!
+      </h1>
+      <p class="hero-subtitle">
+        Vebsaytlar qanday yaratiladi? Har bir sehrli teg nima ish qiladi? Qani, Kodi bilan birga bilib olamiz!
+      </p>
+
+      <!-- Kodi Mascot Greeting Card -->
+      <div class="mascot-card">
+        <div class="kodi-avatar" id="kodiAvatar">
+          <!-- Animated SVG Robot Mascot -->
+          <svg class="robot-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Antenna -->
+            <line x1="60" y1="22" x2="60" y2="8" stroke="#FF5376" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="60" cy="7" r="6" fill="#FFC837" class="pulse-glow"/>
+            <!-- Head -->
+            <rect x="25" y="22" width="70" height="55" rx="18" fill="#4E65FF" stroke="#2B3ECE" stroke-width="3"/>
+            <!-- Face Screen -->
+            <rect x="35" y="32" width="50" height="35" rx="10" fill="#1A1E36"/>
+            <!-- Eyes -->
+            <circle cx="48" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+            <circle cx="72" cy="48" r="6" fill="#00F0FF" class="blinking-eye"/>
+            <!-- Smile / Mouth -->
+            <path d="M50 58 Q60 66 70 58" stroke="#FFC837" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Ears / Bolts -->
+            <rect x="18" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+            <rect x="94" y="38" width="8" height="16" rx="4" fill="#00D2FF"/>
+            <!-- Body -->
+            <rect x="38" y="80" width="44" height="34" rx="10" fill="#2B3ECE"/>
+            <circle cx="60" cy="94" r="8" fill="#FF5376"/>
+            <!-- Arms -->
+            <path d="M30 86 Q18 92 24 104" stroke="#4E65FF" stroke-width="6" stroke-linecap="round" fill="none" class="wave-arm"/>
+            <path d="M90 86 Q102 92 96 104" stroke="#4E65FF" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="mascot-speech">
+          <div class="speech-bubble">
+            <span class="speech-name">🤖 Kodi:</span>
+            <span id="mascotMessage">Salom, yosh dasturchi! Men Kodi bo'laman. HTML — bu vebsaytning g'ishtchalari! Qani, pastga tushib, sehrli teglarni uyg'otamiz!</span>
+          </div>
+          <button class="sound-toggle-btn" id="soundToggleBtn" title="Ovozni yoqish / o'chirish">
+            <span>🔊</span> Ovozli effektlar: <b id="soundStatusText">Yoniq</b>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="lesson-nav">
+      <button class="nav-tab active" data-tab="introTab">
+        <span>🧩</span> 1. HTML nima?
+      </button>
+      <button class="nav-tab" data-tab="tagsTab">
+        <span>✨</span> 2. Sehrli Teglar
+      </button>
+      <button class="nav-tab" data-tab="playgroundTab">
+        <span>🧪</span> 3. Sinov Maydoni
+      </button>
+      <button class="nav-tab" data-tab="quizTab">
+        <span>🏆</span> 4. Mini-Viktorina
+      </button>
+    </nav>
+
+    <!-- TAB 1: INTRO -->
+    <section class="tab-content active" id="introTab">
+      <div class="card intro-card">
+        <h2 class="section-title"><span>🏗️</span> Vebsayt Qanday Quriladi?</h2>
+        <p class="section-desc">
+          Tasavvur qil, sen yangi uy yoki robot yasayapsan. Vebsayt ham xuddi shunday 3 qismdan iborat bo'ladi:
+        </p>
+
+        <div class="trio-grid">
+          <div class="trio-box box-html">
+            <div class="box-icon">🦴</div>
+            <h3>1. HTML (Skelet)</h3>
+            <p>Vebsaytning suyagi va poydevori. Matnlar, rasmlar, tugmalarning barchasi aynan HTML orqali sahifaga qo'yiladi!</p>
+            <div class="trio-tag">Biz bugun buni o'rganamiz!</div>
+          </div>
+          <div class="trio-box box-css">
+            <div class="box-icon">🎨</div>
+            <h3>2. CSS (Kiyim va Pardoz)</h3>
+            <p>Vebsaytning chiroyli kiyimi, yorqin ranglari, shriftlari va pardozidir. U sahifani chiroyli qiladi.</p>
+            <div class="trio-tag">Keyingi darsda</div>
+          </div>
+          <div class="trio-box box-js">
+            <div class="box-icon">⚡</div>
+            <h3>3. JavaScript (Miya)</h3>
+            <p>Vebsaytning harakati va miyasi. O'yinlar, bosganda gapiradigan xabarlar va sehrli harakatlar.</p>
+            <div class="trio-tag">Tez kunda</div>
+          </div>
+        </div>
+
+        <div class="concept-banner">
+          <div class="concept-visual">
+            <div class="tag-box-demo">
+              <span class="demo-tag open">&lt;quti&gt;</span>
+              <span class="demo-content">🎁 Sovg'a</span>
+              <span class="demo-tag close">&lt;/quti&gt;</span>
+            </div>
+          </div>
+          <div class="concept-text">
+            <h3>💡 HTML Tegi Nima?</h3>
+            <p>
+              Teg — bu <b>Sehrli Quticha</b>! 
+              Ochilish qopqog'i <code>&lt;h1&gt;</code> bo'ladi, ichiga so'z solinadi, oxirida esa qopqoq <code>&lt;/h1&gt;</code> (slash bilan) yopiladi! Qopqoq yopilmasa, kompyuter nima qilishni bilmay hayron qoladi!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: INTERACTIVE TAGS EXPLORER -->
+    <section class="tab-content" id="tagsTab">
+      <div class="card tags-explorer">
+        <h2 class="section-title"><span>🔍</span> Sehrli Teglar Laboratoriyasi</h2>
+        <p class="section-desc">
+          Pastdagi sehrli teglardan birini bosing va o'ng tomonda u nima qilishini jonli ko'ring!
+        </p>
+
+        <div class="explorer-layout">
+          <!-- Tag buttons list -->
+          <div class="tags-sidebar">
+            <div class="sidebar-label">Tegni tanlang:</div>
+            <div class="tag-btn-list" id="tagButtonList">
+              <button class="tag-selector-btn active" data-tag="h1">
+                <span class="tag-badge">&lt;h1&gt;</span>
+                <span class="tag-name">Bahaybat Sarlavha</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="p">
+                <span class="tag-badge">&lt;p&gt;</span>
+                <span class="tag-name">Ertakchi Matn</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="button">
+                <span class="tag-badge">&lt;button&gt;</span>
+                <span class="tag-name">Sehrli Bosmachoq</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="img">
+                <span class="tag-badge">&lt;img&gt;</span>
+                <span class="tag-name">Sehrli Foto-Ramka</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="a">
+                <span class="tag-badge">&lt;a&gt;</span>
+                <span class="tag-name">Teleport Havola</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="ul">
+                <span class="tag-badge">&lt;ul&gt; &lt;li&gt;</span>
+                <span class="tag-name">Sehrli Ro'yxat</span>
+              </button>
+              <button class="tag-selector-btn" data-tag="strong">
+                <span class="tag-badge">&lt;strong&gt;</span>
+                <span class="tag-name">Baquvvat So'z</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Visualizer Display -->
+          <div class="tag-display-area">
+            <!-- Header of visualizer -->
+            <div class="display-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="window-title" id="tagWindowTitle">&lt;h1&gt; — Bahaybat Sarlavha</div>
+              <button class="action-btn-trigger" id="animateTagBtn">
+                <span>⚡</span> Jonlantir!
+              </button>
+            </div>
+
+            <!-- Code view -->
+            <div class="code-box">
+              <div class="code-label">HTML KODI:</div>
+              <pre><code id="tagCodeSnippet">&lt;h1&gt;Salom, Dunyo! Men Katta Sarlavhaman!&lt;/h1&gt;</code></pre>
+            </div>
+
+            <!-- Kids Explanation -->
+            <div class="explanation-box" id="tagExplanation">
+              <!-- Dynamically filled -->
+            </div>
+
+            <!-- Live Browser Canvas / Result -->
+            <div class="live-screen-container">
+              <div class="screen-label">🌐 Brauzer Ekranida Natija:</div>
+              <div class="live-screen-viewport" id="liveScreenViewport">
+                <!-- Dynamically rendered visual -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PLAYGROUND -->
+    <section class="tab-content" id="playgroundTab">
+      <div class="card playground-card">
+        <h2 class="section-title"><span>🧪</span> O'zing Sinab Ko'r! (Teglar Laboratoriyasi)</h2>
+        <p class="section-desc">
+          O'z ismingizni yoki biror so'zni yozing va sehrli teglarni almashtirib natijani ko'ring!
+        </p>
+
+        <div class="playground-grid">
+          <!-- Controls -->
+          <div class="pg-controls">
+            <div class="control-group">
+              <label for="pgInputText">Sehrli matningizni yozing:</label>
+              <input type="text" id="pgInputText" value="Kelajak Dasturchisi" placeholder="Masalan: Azizbek">
+            </div>
+
+            <div class="control-group">
+              <label>Qaysi teg qutisiga solamiz?</label>
+              <div class="pg-tag-pills" id="pgTagPills">
+                <button class="pill-btn active" data-pgtag="h1">&lt;h1&gt;</button>
+                <button class="pill-btn" data-pgtag="h2">&lt;h2&gt;</button>
+                <button class="pill-btn" data-pgtag="p">&lt;p&gt;</button>
+                <button class="pill-btn" data-pgtag="button">&lt;button&gt;</button>
+                <button class="pill-btn" data-pgtag="strong">&lt;strong&gt;</button>
+                <button class="pill-btn" data-pgtag="em">&lt;em&gt;</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label>Qo'shimcha rang berish:</label>
+              <div class="color-picker-row">
+                <button class="color-dot active" data-color="#4E65FF" style="background:#4E65FF;"></button>
+                <button class="color-dot" data-color="#FF5376" style="background:#FF5376;"></button>
+                <button class="color-dot" data-color="#00C897" style="background:#00C897;"></button>
+                <button class="color-dot" data-color="#FF9900" style="background:#FF9900;"></button>
+                <button class="color-dot" data-color="#9C27B0" style="background:#9C27B0;"></button>
+              </div>
+            </div>
+
+            <div class="pg-code-preview">
+              <span class="preview-title">Brauzer o'qiydigan kod:</span>
+              <code id="pgCodeOutput">&lt;h1&gt;Kelajak Dasturchisi&lt;/h1&gt;</code>
+            </div>
+          </div>
+
+          <!-- Preview Screen -->
+          <div class="pg-preview-screen">
+            <div class="preview-header">
+              <span>🖥️ Haqiqiy Vebsayt Oynasi</span>
+              <button class="mini-confetti-btn" id="pgCheerBtn">🎉 Qarsaklar!</button>
+            </div>
+            <div class="preview-body" id="pgPreviewBody">
+              <!-- Dynamically generated element -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: QUIZ -->
+    <section class="tab-content" id="quizTab">
+      <div class="card quiz-card">
+        <div class="quiz-header">
+          <div>
+            <h2 class="section-title"><span>🏆</span> Kodli Qahramon Viktorinasi!</h2>
+            <p class="section-desc">Kodi senga 4 ta sinov tayyorladi. Barchasiga to'g'ri javob berib, Dasturchi Yulduzini qo'lga kirit!</p>
+          </div>
+          <div class="quiz-score-badge">
+            <span>⭐ Yulduzlar:</span>
+            <b id="quizScore">0 / 4</b>
+          </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-box" id="quizBox">
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill" style="width: 25%;"></div>
+          </div>
+
+          <div class="question-number" id="questionStep">Savol 1 / 4</div>
+          <h3 class="question-text" id="questionText">Yuklanmoqda...</h3>
+
+          <div class="options-grid" id="optionsGrid">
+            <!-- Dynamically populated buttons -->
+          </div>
+
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+
+        <!-- Quiz Complete Celebration (Hidden by default) -->
+        <div class="quiz-celebration" id="quizCelebration" style="display: none;">
+          <div class="trophy-bounce">🏆</div>
+          <h2>Barakalla, Yosh Qahramon!</h2>
+          <p id="celebrationText">Sen barcha HTML teglari sinovidan a'lo darajada o'tding!</p>
+          <div class="certificate-badge">
+            <span>🎖️ Kodli Sertifikat:</span>
+            <b>1-Darajali HTML Bilimdoni</b>
+          </div>
+          <button class="action-btn-restart" id="restartQuizBtn">
+            <span>🔄</span> Qaytadan O'ynash
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="lesson-footer">
+      <p>💡 <b>Ibrat School</b> uchun tayyorlangan maxsus animatsiyali HTML darsi • Kodi bilan birga qiziqarli dasturlash!</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
